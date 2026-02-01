@@ -1,0 +1,70 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: JS file exists
+      id: js-file-exists
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: JS file exists
+        setup-command: ''
+        command: test -f assets/js/app.js
+        timeout: 10
+        max-score: 15
+    - name: Uses localStorage
+      id: uses-localstorage
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Uses localStorage
+        setup-command: ''
+        command: grep -q "localStorage" assets/js/app.js
+        timeout: 10
+        max-score: 25
+    - name: Adds event listeners
+      id: adds-event-listeners
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Adds event listeners
+        setup-command: ''
+        command: grep -q "addEventListener" assets/js/app.js
+        timeout: 10
+        max-score: 15
+    - name: Uses DOM creation
+      id: uses-dom-creation
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Uses DOM creation
+        setup-command: ''
+        command: grep -Eq "createElement|innerHTML" assets/js/app.js
+        timeout: 10
+        max-score: 20
+    - name: Has CRUD keywords / functions
+      id: has-crud-keywords-functions
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Has CRUD keywords / functions
+        setup-command: ''
+        command: grep -Eq "push|filter|splice|map|find" assets/js/app.js
+        timeout: 10
+        max-score: 25
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        JS-FILE-EXISTS_RESULTS: "${{steps.js-file-exists.outputs.result}}"
+        USES-LOCALSTORAGE_RESULTS: "${{steps.uses-localstorage.outputs.result}}"
+        ADDS-EVENT-LISTENERS_RESULTS: "${{steps.adds-event-listeners.outputs.result}}"
+        USES-DOM-CREATION_RESULTS: "${{steps.uses-dom-creation.outputs.result}}"
+        HAS-CRUD-KEYWORDS-FUNCTIONS_RESULTS: "${{steps.has-crud-keywords-functions.outputs.result}}"
+      with:
+        runners: js-file-exists,uses-localstorage,adds-event-listeners,uses-dom-creation,has-crud-keywords-functions
