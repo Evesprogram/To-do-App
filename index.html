@@ -10,12 +10,12 @@
   <main class="container">
     <header class="header">
       <h1>To-Do App</h1>
-      <p>Week 6 – CRUD + localStorage</p>
+      <p>Week 6 – CRUD + localStorage Persistence</p>
     </header>
 
     <section class="card">
       <form id="todo-form" class="row">
-        <input id="todo-input" type="text" placeholder="Add a task…" />
+        <input id="todo-input" type="text" placeholder="Add a new task…" autocomplete="off" />
         <button type="submit">Add</button>
       </form>
 
@@ -23,14 +23,15 @@
         <button data-filter="all" class="active">All</button>
         <button data-filter="active">Active</button>
         <button data-filter="completed">Completed</button>
-        <button id="clear-completed" type="button">Clear Completed</button>
+        <button id="clear-completed" type="button" style="margin-left: auto;">Clear Completed</button>
       </div>
 
       <ul id="todo-list" class="list"></ul>
     </section>
 
     <footer class="footer">
-      <small>&copy; 2026 Week 6</small>
+      <p id="todo-count">0 items left</p>
+      <small>&copy; 2026 Week 6 Project</small>
     </footer>
   </main>
 
