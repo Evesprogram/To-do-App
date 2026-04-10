@@ -12,8 +12,10 @@
  * - Dark mode
  * - Inline editing
  * - Clear completed
+ * /**
+ * localStorage
+ * addEventListener
  */
-
 
 /* --------------------------
    1. SELECT DOM ELEMENTS
