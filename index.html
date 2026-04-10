@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Week 6 – To-Do App</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+
+<body>
+
+<main class="container">
+
+<header class="header">
+
+<h1>To-Do App</h1>
+<p>CRUD and localStorage</p>
+
+<!-- Dark Mode Toggle -->
+<button id="theme-toggle">🌙 Dark Mode</button>
+
+</header>
+
+
+<section class="card">
+
+<!-- Add Task Form -->
+<form id="todo-form" class="row">
+
+<input
+id="todo-input"
+type="text"
+placeholder="Add a new task..."
+autocomplete="off"
+/>
+
+<button type="submit">Add Task</button>
+
+</form>
+
+
+<!-- Progress Bar -->
+<div class="progress-wrapper">
+
+<div class="progress-bar">
+<div id="progress"></div>
+</div>
+
+<p id="progress-text">0% completed</p>
+
+</div>
+
+
+<!-- Filters -->
+<div class="filters">
+
+<button data-filter="all" class="active">All</button>
+<button data-filter="active">Active</button>
+<button data-filter="completed">Completed</button>
+
+<button id="clear-completed">Clear Done</button>
+
+</div>
+
+
+<!-- Task List -->
+<ul id="todo-list" class="list"></ul>
+
+</section>
+
+
+<footer class="footer">
+
+<p id="todo-count">0 tasks remaining</p>
+<small>&copy; 2026 Week 6 Project</small>
+
+</footer>
+
+</main>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
